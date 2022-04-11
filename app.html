@@ -34,8 +34,8 @@
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="/index.html">
-                <img src="/img/CopyBSWhiteMarkLet.png" width="40" height="40" class="d-inline-block align-text-center me-1">APP
-                NAME
+                <img src="/img/BSWhiteMark_250.png" width="40" height="40"
+                    class="d-inline-block align-text-center me-1">FIZZBUZZ
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
                 aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -65,20 +65,35 @@
 
     <main class="flex-shrink-0">
         <div class="container mt-5">
-            <h1>To Do List</h1>
-            <div class="row align-items-end">
+            <div class="row row-cols-1 row-cols-md-2">
                 <div class="col">
-                    <label for="txtMessage" class="form-label">Item</label>
-                    <input type="text" name="txtMessage" class="form-control" id="txtMessage" placeholder="Enter Item">
+                    <h1>FIZZBUZZ</h1>
+                    <p>Two numbers are entered,
+                        the first number will be labeled "FIZZ" and the second number labeled "BUZZ". Numbers between 1
+                        to 100 will be displayed. Numbers divisible by "FIZZ" will display as "FIZZ". Numbers divisible
+                        by "BUZZ" will display as "BUZZ". Numbers divisible by both numbers will display as "FIZZBUZZ".
+                    </p>
                 </div>
                 <div class="col">
-                    <button id="btnSubmit" class="btn btn-primary">Add</button>
+                    <h4>Enter Values</h4>
+                    <div class="row">
+                        <div class="col">
+                            <h4>Fizz</h4>
+                            <input type="text" class="form-control" id="fizzNum" placeholder="Fizz">
+                        </div>
+                        <div class="col">
+                            <h4>Buzz</h4>
+                            <input type="text" class="form-control" id="buzzNum" placeholder="Buzz">
+                        </div>
+                    </div>
+                    <button id="btnSubmit" class="btn btn-primary mt-2">Start</button>
                 </div>
             </div>
+            <hr>
             <div class="messageStyle mt-5">
-                <ol id="results" class="list-group list-group-numbered">
+                <div id="results" class="row row-cols-5">
                     <!-- My Items will go here -->
-                </ol>
+                </div>
             </div>
         </div>
     </main>
@@ -89,7 +104,7 @@
                     <span>&copy; 2022</span> Brandon Smeltzer | brandon.m.smeltzer@gmail.com
                 </div>
                 <div class="col d-flex justify-content-start justify-content-lg-center">
-                    <img src="/img/CopyBSWhiteMarkLet.png" height="40">
+                    <img src="/img/BSWhiteMark_250.png" height="40">
                 </div>
                 <div class="col d-flex align-items-center justify-content-start justify-content-lg-end">
                     <div class="row">
@@ -116,7 +131,7 @@
     <script src="/js/site.js"></script>
 
     <script>
-        document.getElementById("btnSubmit").addEventListener("click", getMessage);
+        document.getElementById("btnSubmit").addEventListener("click", getValues);
     </script>
 
 

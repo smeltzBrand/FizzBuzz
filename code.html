@@ -21,9 +21,7 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/css/site.css">
-    <link rel="stylesheet" href="/css/SiteCodeDisplay.css"
-
-    <!-- favicon -->
+    <link rel="stylesheet" href="/css/SiteCodeDisplay.css" <!-- favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
@@ -35,7 +33,7 @@
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="/index.html">
-                <img src="/img/BSWhiteMark.png" width="40" height="40" class="d-inline-block align-text-center me-1">APP
+                <img src="/img/BSWhiteMark_250.png" width="40" height="40" class="d-inline-block align-text-center me-1">APP
                 NAME
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
@@ -66,48 +64,99 @@
 
     <main class="flex-shrink-0">
         <div class="container mt-5">
-            <h1>THE CODE For App Name</h1>
+            <h1>THE CODE For FIZZBUZZ</h1>
             <div class="row">
                 <div class="col-12 col-lg-8">
                     <pre class="line-numbers">
                         <code class="language-javascript">
-
                             //Step ONE - controller accept requests
-                            function getMessage(){
+                            function getValues() {
                             
-                                let msg = document.getElementById("txtMessage").value;
+                                // First get the fizz anb buzz values from the user
+                                let fizzValue = document.getElementById("fizzNum").value;
+                                let buzzValue = document.getElementById("buzzNum").value;
                             
-                                displayMessage(msg);
+                                // check if the user entered numbers
+                                fizzValue = parseInt(fizzValue);
+                                buzzValue = parseInt(buzzValue);
+                            
+                            
+                                if (Number.isInteger(fizzValue) && Number.isInteger(buzzValue)) {
+                                    //Call display values and pass fizz buzz values to the function
+                                    //calculate fizzbuzz
+                                    let fbValues = fizzBuzzA(fizzValue, buzzValue);
+                                    //
+                                    displayValues(fbValues);
+                                } else {
+                                    alert("You must enter integers!")
+                                }
                             
                             }
                             
+                            //business logic layer - Model
+                            function fizzBuzzA(fizz, buzz) {
+                            
+                                // create an array
+                                let fbValues = [];
+                            
+                                for (let i = 1; i < 100; i++) {
+                            
+                                    if (i % fizz == 0 && i % buzz == 0) {
+                                        fbValues.push('FizzBuzz');
+                                    } else if (i % fizz == 0) {
+                                        fbValues.push('Fizz');
+                                    } else if (i % buzz == 0) {
+                                        fbValues.push('Buzz');
+                                    } else {
+                                        fbValues.push(i);
+                                    }
+                            
+                                }
+                            
+                                return fbValues;
+                            
+                            }
                             
                             //Final Step - view
-                            function displayMessage(message) {
-                                
-                                //first get the ol element from the page
-                                element = document.getElementById("results");
-                                
-                                //next create a new li element
-                                let item = document.createElement("li");
-                                //add classes to the li element
-                                item.classList.add("list-group-item");
-                                //set the message for the li element
-                                item.innerHTML = message;
+                            function displayValues(fbValues) {
                             
-                                //add the new item to the list
-                                element.appendChild(item);
+                                // display a list of numbers from 1 to 100
+                            
+                                let element = document.getElementById("results");
+                            
+                                element.innerHTML = "";
+                            
+                                // write a foor loop to display from 1 to 100
+                                for (let i = 0; i < fbValues.length; i++) {
+                            
+                                    let item = document.createElement("div");
+                                    item.classList.add("col");
+                                    item.innerHTML = fbValues[i];
+                            
+                                    if (fbValues[i] == "FizzBuzz") {
+                                        item.classList.add("purpleItem")
+                                    } else if (fbValues[i] == "Fizz") {
+                                        item.classList.add("redItem")
+                                    } else if (fbValues[i] == "Buzz") {
+                                        item.classList.add("blueItem")
+                                    }
+                            
+                                    element.appendChild(item);
+                                }
                             
                             }
+                           
                         </code>
                     </pre>
                 </div>
                 <div class="col-12 col-lg-4">
-                    <p>The code is structured in two functions</p>
-                    <h5>getMessage</h5>
-                    <p>Gets values from the user</p>
-                    <h5>displayMessage</h5>
-                    <p>Displays the items on the page</p>
+                    <p>The code is structured in three functions.</p>
+                    <h5>getValues()</h5>
+                    <p>Grab the two input values, fizzNum and buzzNum, that were submitted. Assign these values to new variables that we will pass into a function. Then, call the function fizzBuzzA() and pass in the newly assigned variables as arguments to create an array, fbValues[]. Lastly, pass the newly created array into the function displayValues(). </p>
+                    <h5>fizzBuzzA()</h5>
+                    <p>Start a for loop with an empty array, fbValues[] that runs through the numbers 1 through 100. Use if else statements to see if [i] is divisible by the 'fizz' value only, the 'buzz' value only or divisible by both of these values and then assign reassign those values to "Fizz", "Buzz", or "FizzBuzz" respectively. Then push each value to the array. Lastly, return the array. </p>
+                    <h5>displayValues()</h5>
+                    <p> Grab the element of "results" from the page.  Create a 'div' element and assign it to the new 'item' variable. Add the class of 'col' to the item. assign the innerHTML to the current [i] value. Use if else statements to assign purle, red and blue font to FizzBuzz, Fizz and Buzz, respectively, through HTML classes and CSS. Lastly, append the item to the element that was grabbed at the beginning of the for loop.</p>
                 </div>
             </div>
         </div>
@@ -119,7 +168,7 @@
                     <span>&copy; 2022</span> Brandon Smeltzer | brandon.m.smeltzer@gmail.com
                 </div>
                 <div class="col d-flex justify-content-start justify-content-lg-center">
-                    <img src="/img/BSWhiteMark.png" height="40">
+                    <img src="/img/BSWhiteMark_250.png" height="40">
                 </div>
                 <div class="col d-flex align-items-center justify-content-start justify-content-lg-end">
                     <div class="row">
