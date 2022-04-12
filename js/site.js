@@ -13,7 +13,7 @@ function getValues() {
     if (Number.isInteger(fizzValue) && Number.isInteger(buzzValue)) {
         //Call display values and pass fizz buzz values to the function
         //calculate fizzbuzz
-        let fbValues = fizzBuzzA(fizzValue, buzzValue);
+        let fbValues = fizzBuzzC(fizzValue, buzzValue);
         //
         displayValues(fbValues);
     } else {
@@ -40,6 +40,54 @@ function fizzBuzzA(fizz, buzz) {
             fbValues.push(i);
         }
 
+    }
+
+    return fbValues;
+
+}
+
+function fizzBuzzB(fizz, buzz) {
+    let fbValues = [];
+
+    let isFizz = false;
+    let isBuzz = false;
+
+    for (let i = 1; i < 101; i++) {
+        
+        isFizz = (i%fizz == 0);
+        isBuzz = (i%buzz == 0);
+
+        switch(true) {
+            case isFizz && isBuzz: {
+                fbValues.push("FizzBuzz");
+                break;
+            }
+            case isFizz: {
+                fbValues.push("Fizz");
+                break;
+            }
+            case isBuzz: {
+                fbValues.push("Buzz");
+                break;
+            }
+            default: {
+                fbValues.push(i);
+                break;
+            }
+        }
+        
+    }
+
+    return fbValues;
+}
+
+
+function fizzBuzzC(fizz, buzz) {
+    let fbValues = [];
+
+    for (let i = 1; i < 101; i++) {
+        let value = ( (i%fizz == 0 ? "Fizz" : "") + ( i%buzz == 0 ? "Buzz" : "") || i  );
+        fbValues.push(value);
     }
 
     return fbValues;
