@@ -10,8 +10,8 @@ body{
     font-size: 1.2rem;
 }
 
-nav {
-    background-color: var(--cf-dark-color);
+.navFooterBg {
+    background-color: rgb(58, 94, 59) !important;
 }
 
 main>.container {
