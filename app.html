@@ -68,7 +68,7 @@
             <div class="row row-cols-1 row-cols-md-2">
                 <div class="col">
                     <h1>FIZZBUZZ</h1>
-                    <p>Two numbers are entered,
+                    <p>Two numbers between 1 and 100 are entered,
                         the first number will be assigned to <code>"fizz"</code> and the second number assigned to <code>"buzz"</code>. Numbers between 1
                         to 100 will be displayed. Numbers divisible by <code>"fizz"</code> will display as "FIZZ". Numbers divisible
                         by <code>"buzz"</code> will display as "BUZZ". Numbers divisible by both numbers will display as "FIZZBUZZ".
@@ -86,7 +86,7 @@
                             <input type="number" class="form-control" id="buzzNum" placeholder="Buzz">
                         </div>
                     </div>
-                    <button id="btnSubmit" class="btn btn-primary mt-2">Start</button>
+                    <button id="btnSubmit" class="btn btn-primary mt-2" target="_blank">Start</button>
                 </div>
             </div>
             <hr>
@@ -133,6 +133,10 @@
     <script>
         document.getElementById("btnSubmit").addEventListener("click", getValues);
     </script>
+
+    <!-- Sweet Alerts -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="sweetalert2.all.min.js"></script>
 
 
 </body>

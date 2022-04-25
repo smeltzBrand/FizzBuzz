@@ -9,15 +9,16 @@ function getValues() {
     fizzValue = parseInt(fizzValue);
     buzzValue = parseInt(buzzValue);
 
-
-    if (Number.isInteger(fizzValue) && Number.isInteger(buzzValue)) {
+    //check if input numbers are equal to or greater than 1
+    if (Number.isInteger(fizzValue) && Number.isInteger(buzzValue) && fizzValue >= 1 && fizzValue <= 100 && buzzValue >= 1 && buzzValue <= 100) {
         //Call display values and pass fizz buzz values to the function
         //calculate fizzbuzz
+        
         let fbValues = fizzBuzzC(fizzValue, buzzValue);
         //
         displayValues(fbValues);
     } else {
-        alert("You must enter integers!")
+        Swal.fire("Oops!","Please enter integers between 1 and 100.")
     }
 
 }

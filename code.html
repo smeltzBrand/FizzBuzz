@@ -71,82 +71,133 @@
                     <pre class="line-numbers">
                         <code class="language-javascript">
                             //Step ONE - controller accept requests
-                            function getValues() {
-                            
-                                // First get the fizz anb buzz values from the user
-                                let fizzValue = document.getElementById("fizzNum").value;
-                                let buzzValue = document.getElementById("buzzNum").value;
-                            
-                                // check if the user entered numbers
-                                fizzValue = parseInt(fizzValue);
-                                buzzValue = parseInt(buzzValue);
-                            
-                            
-                                if (Number.isInteger(fizzValue) && Number.isInteger(buzzValue)) {
-                                    //Call display values and pass fizz buzz values to the function
-                                    //calculate fizzbuzz
-                                    let fbValues = fizzBuzzA(fizzValue, buzzValue);
-                                    //
-                                    displayValues(fbValues);
-                                } else {
-                                    alert("You must enter integers!")
-                                }
-                            
-                            }
-                            
-                            //business logic layer - Model
-                            function fizzBuzzA(fizz, buzz) {
-                            
-                                // create an array
-                                let fbValues = [];
-                            
-                                for (let i = 1; i < 100; i++) {
-                            
-                                    if (i % fizz == 0 && i % buzz == 0) {
-                                        fbValues.push("FizzBuzz");
-                                    } else if (i % fizz == 0) {
-                                        fbValues.push("Fizz");
-                                    } else if (i % buzz == 0) {
-                                        fbValues.push("Buzz");
-                                    } else {
-                                        fbValues.push(i);
-                                    }
-                            
-                                }
-                            
-                                return fbValues;
-                            
-                            }
-                            
-                            //Final Step - view
-                            function displayValues(fbValues) {
-                            
-                                // display a list of numbers from 1 to 100
-                            
-                                let element = document.getElementById("results");
-                            
-                                element.innerHTML = "";
-                            
-                                // write a foor loop to display from 1 to 100
-                                for (let i = 0; i < fbValues.length; i++) {
-                            
-                                    let item = document.createElement("div");
-                                    item.classList.add("col");
-                                    item.innerHTML = fbValues[i];
-                            
-                                    if (fbValues[i] == "FizzBuzz") {
-                                        item.classList.add("purpleItem")
-                                    } else if (fbValues[i] == "Fizz") {
-                                        item.classList.add("redItem")
-                                    } else if (fbValues[i] == "Buzz") {
-                                        item.classList.add("blueItem")
-                                    }
-                            
-                                    element.appendChild(item);
-                                }
-                            
-                            }
-                           
+function getValues() {
+
+    // First get the fizz anb buzz values from the user
+    let fizzValue = document.getElementById("fizzNum").value;
+    let buzzValue = document.getElementById("buzzNum").value;
+
+    // check if the user entered numbers
+    fizzValue = parseInt(fizzValue);
+    buzzValue = parseInt(buzzValue);
+
+    //check if input numbers are equal to or greater than 1
+    if (Number.isInteger(fizzValue) && Number.isInteger(buzzValue) && fizzValue >= 1 && fizzValue <= 100 && buzzValue >= 1 && buzzValue <= 100) {
+        //Call display values and pass fizz buzz values to the function
+        //calculate fizzbuzz
+        
+        let fbValues = fizzBuzzC(fizzValue, buzzValue);
+        //
+        displayValues(fbValues);
+    } else {
+        Swal.fire("Oops!","Please enter integers between 1 and 100.")
+    }
+
+}
+
+//business logic layer - Model
+function fizzBuzzA(fizz, buzz) {
+
+    // create an array
+    let fbValues = [];
+
+    for (let i = 1; i < 100; i++) {
+
+        if (i % fizz == 0 && i % buzz == 0) {
+            fbValues.push('FizzBuzz');
+        } else if (i % fizz == 0) {
+            fbValues.push('Fizz');
+        } else if (i % buzz == 0) {
+            fbValues.push('Buzz');
+        } else {
+            fbValues.push(i);
+        }
+
+    }
+
+    return fbValues;
+
+}
+
+function fizzBuzzB(fizz, buzz) {
+    let fbValues = [];
+
+    let isFizz = false;
+    let isBuzz = false;
+
+    for (let i = 1; i < 101; i++) {
+        
+        isFizz = (i%fizz == 0);
+        isBuzz = (i%buzz == 0);
+
+        switch(true) {
+            case isFizz && isBuzz: {
+                fbValues.push("FizzBuzz");
+                break;
+            }
+            case isFizz: {
+                fbValues.push("Fizz");
+                break;
+            }
+            case isBuzz: {
+                fbValues.push("Buzz");
+                break;
+            }
+            default: {
+                fbValues.push(i);
+                break;
+            }
+        }
+        
+    }
+
+    return fbValues;
+}
+
+
+function fizzBuzzC(fizz, buzz) {
+    let fbValues = [];
+
+    for (let i = 1; i < 101; i++) {
+        let value = ( (i%fizz == 0 ? "Fizz" : "") + ( i%buzz == 0 ? "Buzz" : "") || i  );
+        fbValues.push(value);
+    }
+
+    return fbValues;
+
+}
+
+//Final Step - view
+function displayValues(fbValues) {
+
+    // display a list of numbers from 1 to 100
+
+    let element = document.getElementById("results");
+
+    element.innerHTML = "";
+
+
+    // write a foor loop to display from 1 to 100
+    for (let i = 0; i < fbValues.length; i++) {
+
+        let item = document.createElement("div");
+        item.classList.add("col");
+        item.innerHTML = fbValues[i];
+
+        if (fbValues[i] == "FizzBuzz") {
+            item.classList.add("purpleItem")
+        } else if (fbValues[i] == "Fizz") {
+            item.classList.add("redItem")
+        } else if (fbValues[i] == "Buzz") {
+            item.classList.add("blueItem")
+        }
+
+        element.appendChild(item);
+    }
+
+
+
+}
                         </code>
                     </pre>
                 </div>
@@ -154,14 +205,14 @@
                     <p>The code is structured in three functions.</p>
                     <h5><code>getValues()</code></h5>
                     <p>Grab the two input values, <code>fizzNum</code> and <code>buzzNum</code>, that were submitted.
-                        Assign these values to new variables that we will pass into a function. Then, call the function
-                        <code>fizzBuzzA()</code> and pass in the newly assigned variables as arguments to create an
+                        Assign these values to new variables that we will pass into a function. Verify inputs as integers between 1 and 100. Then, call the function
+                        <code>fizzBuzzC()</code> and pass in the newly assigned variables as arguments to create an
                         array, <code>fbValues[]</code>. Lastly, pass the newly created array into the function
                         <code>displayValues()</code>. </p>
-                    <h5><code>fizzBuzzA()</code></h5>
+                    <h5><code>fizzBuzzC()</code></h5>
                     <p>Start a for loop with an empty array, <code>fbValues[]</code> that runs through the numbers 1
                         through 100. Use if else statements to see if <code>[i]</code> is divisible by the
-                        <code>"fizz"</code> value only, the <code>"buzz"</code>> value only or divisible by both of
+                        <code>"fizz"</code> value only, the <code>"buzz"</code> value only or divisible by both of
                         these values and then reassign those values to <code>"Fizz"</code>, <code>"Buzz"</code>, or
                         <code>"FizzBuzz"</code> respectively. Then push each value to the array. Lastly, return the
                         array. </p>
@@ -169,7 +220,7 @@
                     <p> Grab the element of <code>"results"</code> from the page. Create a <code>div</code> element and
                         assign it to the new <code>item</code> variable. Add the class of <code>col</code> to the item.
                         Assign the <code>innerHTML</code> to the current <code>[i]</code> value. Use if else statements
-                        to assign purle, red and blue font to <code>"FizzBuzz"</code>, <code>"Fizz"</code> and
+                        to assign purple, red and blue font to <code>"FizzBuzz"</code>, <code>"Fizz"</code> and
                         <code>"Buzz"</code>, respectively, through HTML classes and CSS. Lastly, append the item to the
                         element that was grabbed at the beginning of the for loop.</p>
                 </div>
